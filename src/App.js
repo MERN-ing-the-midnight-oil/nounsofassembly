@@ -53,6 +53,16 @@ function App() {
 		const savedPhrasesList = document.querySelector(".saved-phrases");
 		savedPhrasesList.scrollTop += offset;
 	};
+	const handleUpvote = (index) => {
+		if (index > 0) {
+			const updatedPhrases = [...savedPhrases];
+			const temp = updatedPhrases[index];
+			updatedPhrases[index] = updatedPhrases[index - 1];
+			updatedPhrases[index - 1] = temp;
+			setSavedPhrases(updatedPhrases);
+			localStorage.setItem("phrases", JSON.stringify(updatedPhrases));
+		}
+	};
 
 	return (
 		<div className="App">
@@ -121,6 +131,11 @@ function App() {
 							key={index}
 							id={`phrase-${index}`}>
 							{phrase}
+							<span
+								className="upvote-icon"
+								onClick={() => handleUpvote(index)}>
+								&#9650;
+							</span>
 						</li>
 					))}
 					{/* Scroll buttons */}
