@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import animals from "./animals";
 import collectives from "./collectives";
-import professions from "./professions"; // Import the professions array
 
 function App() {
 	const [selectedAnimal, setSelectedAnimal] = useState(animals[0]);
@@ -13,7 +12,6 @@ function App() {
 	const [progress, setProgress] = useState(0);
 	const [upvotingInProgress, setUpvotingInProgress] = useState(false);
 	const [upvotingProgress, setUpvotingProgress] = useState(0);
-	const [activeCategory, setActiveCategory] = useState("animals"); // Track active category
 
 	useEffect(() => {
 		const phrases = JSON.parse(localStorage.getItem("phrases")) || [];
@@ -85,15 +83,6 @@ function App() {
 		}
 	};
 
-	const handleCategoryChange = (category) => {
-		setActiveCategory(category);
-		if (category === "animals") {
-			setSelectedAnimal(animals[0]);
-		} else if (category === "professions") {
-			setSelectedAnimal(professions[0]);
-		}
-	};
-
 	return (
 		<div className="App">
 			<header className="App-header">
@@ -109,38 +98,16 @@ function App() {
 				<div className="container">
 					<div>
 						<h2>Select a Noun</h2>
-						<div className="category-buttons">
-							<button
-								className={activeCategory === "animals" ? "active" : ""}
-								onClick={() => handleCategoryChange("animals")}>
-								Animals
-							</button>
-							<button
-								className={activeCategory === "professions" ? "active" : ""}
-								onClick={() => handleCategoryChange("professions")}>
-								Professions
-							</button>
-						</div>
 						<select
 							value={selectedAnimal}
 							onChange={(e) => setSelectedAnimal(e.target.value)}>
-							{activeCategory === "animals"
-								? animals.map((animal) => (
-										<option
-											key={animal}
-											value={animal}>
-											{animal}
-										</option>
-								  ))
-								: activeCategory === "professions"
-								? professions.map((profession) => (
-										<option
-											key={profession}
-											value={profession}>
-											{profession}
-										</option>
-								  ))
-								: null}
+							{animals.map((animal) => (
+								<option
+									key={animal}
+									value={animal}>
+									{animal}
+								</option>
+							))}
 						</select>
 					</div>
 					<div>
