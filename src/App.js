@@ -74,7 +74,7 @@ function App() {
 						alt="logo"
 						style={{ width: "100px", height: "auto" }}
 					/>
-					<h1>Nouns of Assembly Phrase Masher</h1>
+					<h1>Cora Smoker's Wonder Fair Nouns of Assembly Phrase Masher</h1>
 				</div>
 				<div className="container">
 					<div>
