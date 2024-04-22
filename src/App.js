@@ -10,6 +10,8 @@ function App() {
 	const [savedPhrases, setSavedPhrases] = useState([]);
 	const [showProgressBar, setShowProgressBar] = useState(false);
 	const [progress, setProgress] = useState(0);
+	const [upvotingInProgress, setUpvotingInProgress] = useState(false);
+	const [upvotingProgress, setUpvotingProgress] = useState(0);
 
 	useEffect(() => {
 		const phrases = JSON.parse(localStorage.getItem("phrases")) || [];
@@ -53,14 +55,31 @@ function App() {
 		const savedPhrasesList = document.querySelector(".saved-phrases");
 		savedPhrasesList.scrollTop += offset;
 	};
+
 	const handleUpvote = (index) => {
 		if (index > 0) {
-			const updatedPhrases = [...savedPhrases];
-			const temp = updatedPhrases[index];
-			updatedPhrases[index] = updatedPhrases[index - 1];
-			updatedPhrases[index - 1] = temp;
-			setSavedPhrases(updatedPhrases);
-			localStorage.setItem("phrases", JSON.stringify(updatedPhrases));
+			setUpvotingInProgress(true); // Set upvoting in progress
+			let progress = 0;
+			const upvoteInterval = setInterval(() => {
+				progress += 10;
+				if (progress >= 100) {
+					clearInterval(upvoteInterval);
+					const updatedPhrases = [...savedPhrases];
+					const temp = updatedPhrases[index];
+					updatedPhrases[index] = updatedPhrases[index - 1];
+					updatedPhrases[index - 1] = temp;
+					setSavedPhrases(updatedPhrases);
+					localStorage.setItem("phrases", JSON.stringify(updatedPhrases)); // Update phrases in local storage
+					setUpvotingInProgress(false); // Set upvoting progress to false
+				}
+				setUpvotingProgress(progress);
+			}, 500); // Update progress every 500 milliseconds
+
+			// Show progress bar during upvoting
+			setTimeout(() => {
+				clearInterval(upvoteInterval);
+				setUpvotingInProgress(false); // Set upvoting progress to false
+			}, 5000); // Timeout after 5000 milliseconds (5 seconds)
 		}
 	};
 
@@ -123,8 +142,16 @@ function App() {
 								style={{ width: `${(progress / 100) * 100}%` }}></div>
 						</div>
 					)}
+					{upvotingInProgress && (
+						<div className="progress-bar-container">
+							<div
+								className="progress-bar upvoting-progress-bar"
+								style={{ width: `${(upvotingProgress / 100) * 100}%` }}>
+								Upvoting...
+							</div>
+						</div>
+					)}
 				</div>
-
 				<ul className="saved-phrases">
 					{savedPhrases.map((phrase, index) => (
 						<li

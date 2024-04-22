@@ -102,7 +102,6 @@ button {
 .save-button:hover {
   background-color: #45a049; /* Darker green on hover */
 }
-
 /* Progress bar styles */
 .progress-bar-container {
   width: 100%;
@@ -110,6 +109,7 @@ button {
   background-color: #f0f0f0;
   border-radius: 5px;
   margin-top: 10px;
+  position: relative; /* Ensure relative positioning for absolute elements */
 }
 
 .progress-bar {
@@ -118,6 +118,18 @@ button {
   border-radius: 5px;
   transition: width 0.1s linear;
 }
+
+.upvoting-progress-bar {
+  height: 100%;
+  background-color: #ff5733; /* Orange color */
+  border-radius: 5px;
+  transition: width 0.1s linear;
+  position: absolute; /* Position relative to the container */
+  top: 0; /* Align to the top of the container */
+  left: 0; /* Align to the left of the container */
+}
+
+
 
 /* Saved phrases styling */
 .saved-phrases {
