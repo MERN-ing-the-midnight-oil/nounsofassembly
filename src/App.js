@@ -177,6 +177,9 @@ function App() {
 						&darr;
 					</div>
 				</ul>
+				<div className="upvote-instructions">
+					Click on the triangle to vote for your favorite phrases
+				</div>
 			</header>
 		</div>
 	);
