@@ -157,6 +157,7 @@ function App() {
 							</button>
 						</div>
 						<select
+							className="custom-dropdown" // Add a custom class for styling
 							value={selectedNoun}
 							onChange={(e) => handleNounChange(e.target.value)}>
 							{selectedNoun === professions[0]
@@ -190,7 +191,7 @@ function App() {
 							<button
 								className={selectedNounOfAssembly === ations[0] ? "active" : ""}
 								onClick={() => handleNounOfAssemblyChange(ations[0])}>
-								Ations
+								"ation"s
 							</button>
 							<button
 								className={
@@ -262,8 +263,8 @@ function App() {
 					)}
 				</div>{" "}
 				<div className="upvote-instructions">
-					note: you can click on any triangle to upvote any phrase and it will
-					move up in the list
+					note: You can click on a triangle to upvote a phrase and it will move
+					up in the list of saved phrases below. Vote up your favorites!
 				</div>
 				<ul className="saved-phrases">
 					{savedPhrases.map((phrase, index) => (

@@ -11,7 +11,7 @@ body {
 
 select {
   width: 150px;
-  height: 150px;
+  height: 30px; /* Reduced height */
   overflow: scroll;
 }
 
@@ -26,35 +26,16 @@ button {
   height: auto;
 }
 
-.dropdown {
-  font-size: 16px;
-  width: 100%;
-  padding: 8px;
+/* Flex container for icon and title */
+.icon-title-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-/* Scroll buttons */
-.scroll-button {
-  position: absolute;
-  top: 0;
-  width: 10px;
-  height: 10px;
-  background-color: #ccc;
-  cursor: pointer;
-  opacity: 0.5; /* Set initial opacity for hover effect */
-  transition: opacity 0.3s ease; /* Add transition effect for opacity change */
-}
-
-.scroll-button:hover {
-  opacity: 1; /* Change opacity on hover */
-}
-
-.scroll-button-up {
-  left: calc(50% - 5px); /* Position horizontally at the middle */
-}
-
-.scroll-button-down {
-  left: calc(50% - 5px); /* Position horizontally at the middle */
-  bottom: 0;
+.icon-title-container img {
+  width: 150%; /* Make the icon 50% bigger */
+  margin-right: 10px;
 }
 
 .phrase-container {
@@ -65,18 +46,6 @@ button {
 }
 
 .phrase-display {
-  margin-right: 10px;
-}
-
-/* Flex container for icon and title */
-.icon-title-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.icon-title-container img {
-  width: 150%; /* Make the icon 50% bigger */
   margin-right: 10px;
 }
 
@@ -102,6 +71,7 @@ button {
 .save-button:hover {
   background-color: #45a049; /* Darker green on hover */
 }
+
 /* Progress bar styles */
 .progress-bar-container {
   width: 100%;
@@ -128,8 +98,6 @@ button {
   top: 0; /* Align to the top of the container */
   left: 0; /* Align to the left of the container */
 }
-
-
 
 /* Saved phrases styling */
 .saved-phrases {
@@ -170,8 +138,7 @@ button {
   cursor: pointer; /* Change cursor to pointer on hover */
 }
 
-
-/* // CSS styles for the "active" class to make the selected button visually distinct */
+/* Active class to make selected button visually distinct */
 .active {
   background-color: #f0f0f0; /* Change to a different color */
   border: 2px solid #333; /* Add a border */
