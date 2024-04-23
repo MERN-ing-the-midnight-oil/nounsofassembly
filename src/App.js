@@ -4,6 +4,7 @@ import animals from "./animals";
 import ations from "./ations"; // Import the ations array
 import gatherings from "./gatherings"; // Import the gatherings array
 import professions from "./professions"; // Import the professions array
+import vehicles from "./vehicles"; // Import the vehicles array
 
 function App() {
 	const [selectedNoun, setSelectedNoun] = useState(professions[0]); // Set initial value for Noun dropdown
@@ -116,7 +117,10 @@ function App() {
 						alt="logo"
 						style={{ width: "100px", height: "auto" }}
 					/>
-					<h1>Cora Smoker's Wonder Fair Nouns of Assembly Phrase Masher</h1>
+					<h1>
+						Cora Smoker's Happy Valley School Wonder Fair 2024 <br /> Nouns of
+						Assembly Phrase Masher
+					</h1>
 				</div>
 				<div className="container">
 					<div>
@@ -132,6 +136,11 @@ function App() {
 								onClick={() => handleNounChange(professions[0])}>
 								Professions
 							</button>
+							<button
+								className={selectedNoun === vehicles[0] ? "active" : ""}
+								onClick={() => handleNounChange(vehicles[0])}>
+								Vehicles
+							</button>
 						</div>
 						<select
 							value={selectedNoun}
@@ -144,7 +153,15 @@ function App() {
 											{noun}
 										</option>
 								  ))
-								: animals.map((noun) => (
+								: selectedNoun === animals[0]
+								? animals.map((noun) => (
+										<option
+											key={noun}
+											value={noun}>
+											{noun}
+										</option>
+								  ))
+								: vehicles.map((noun) => (
 										<option
 											key={noun}
 											value={noun}>
@@ -159,7 +176,7 @@ function App() {
 							<button
 								className={selectedNounOfAssembly === ations[0] ? "active" : ""}
 								onClick={() => handleNounOfAssemblyChange(ations[0])}>
-								Ations
+								"-ation"s
 							</button>
 							<button
 								className={
@@ -190,6 +207,7 @@ function App() {
 						</select>
 					</div>
 				</div>
+
 				<div className="phrase-container">
 					<p className="phrase-display">
 						<span className="your-phrase">Your Phrase:</span>{" "}
