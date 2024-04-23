@@ -5,6 +5,7 @@ import ations from "./ations"; // Import the ations array
 import gatherings from "./gatherings"; // Import the gatherings array
 import professions from "./professions"; // Import the professions array
 import vehicles from "./vehicles"; // Import the vehicles array
+import noises from "./noises"; // Import the noises array
 
 function App() {
 	const [selectedNoun, setSelectedNoun] = useState(professions[0]); // Set initial value for Noun dropdown
@@ -153,15 +154,15 @@ function App() {
 											{noun}
 										</option>
 								  ))
-								: selectedNoun === animals[0]
-								? animals.map((noun) => (
+								: selectedNoun === vehicles[0]
+								? vehicles.map((noun) => (
 										<option
 											key={noun}
 											value={noun}>
 											{noun}
 										</option>
 								  ))
-								: vehicles.map((noun) => (
+								: animals.map((noun) => (
 										<option
 											key={noun}
 											value={noun}>
@@ -176,7 +177,7 @@ function App() {
 							<button
 								className={selectedNounOfAssembly === ations[0] ? "active" : ""}
 								onClick={() => handleNounOfAssemblyChange(ations[0])}>
-								"-ation"s
+								Ations
 							</button>
 							<button
 								className={
@@ -184,6 +185,11 @@ function App() {
 								}
 								onClick={() => handleNounOfAssemblyChange(gatherings[0])}>
 								Gatherings
+							</button>
+							<button
+								className={selectedNounOfAssembly === noises[0] ? "active" : ""}
+								onClick={() => handleNounOfAssemblyChange(noises[0])}>
+								Noises
 							</button>
 						</div>
 						<select
@@ -197,7 +203,15 @@ function App() {
 											{noun}
 										</option>
 								  ))
-								: gatherings.map((noun) => (
+								: selectedNounOfAssembly === gatherings[0]
+								? gatherings.map((noun) => (
+										<option
+											key={noun}
+											value={noun}>
+											{noun}
+										</option>
+								  ))
+								: noises.map((noun) => (
 										<option
 											key={noun}
 											value={noun}>

@@ -169,3 +169,11 @@ button {
 .upvote-icon {
   cursor: pointer; /* Change cursor to pointer on hover */
 }
+
+
+/* // CSS styles for the "active" class to make the selected button visually distinct */
+.active {
+  background-color: #f0f0f0; /* Change to a different color */
+  border: 2px solid #333; /* Add a border */
+  font-weight: bold; /* Make text bold */
+}
