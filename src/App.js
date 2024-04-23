@@ -129,7 +129,7 @@ function App() {
 						src="/logo.webp"
 						className="App-logo"
 						alt="logo"
-						style={{ width: "100px", height: "auto" }}
+						style={{ width: "200px", height: "auto" }}
 					/>
 					<h1>
 						Cora Smoker's Happy Valley School Wonder Fair 2024 <br /> Nouns of

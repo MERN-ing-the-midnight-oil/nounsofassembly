@@ -1,6 +1,23 @@
-# Getting Started with Create React App
+# Nouns of Assembly Phrase Masher
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is an interactive supplement to a 4th-grade (Happy Valley Elementary School) linguistics project about "nouns of assembly." It's designed to help students understand and create humorous nouns of assembly, inspired by the concept of "terms of venery."
+
+## About Nouns of Assembly
+
+Nouns of assembly, also known as terms of venery, are collective nouns that refer to groups of animals or other things. They often have humorous or poetic origins and can add flair to written language.
+
+For more information about nouns of assembly, you can read this short article: [An Elocution of Etymologists: Nouns of Assembly or Terms of Venery](https://uselessetymology.com/2021/07/24/an-elocution-of-of-etymologists-nouns-of-assembly-or-terms-of-venery/)
+
+## How to Use
+
+1. Select a noun category from the dropdown menus.
+2. Select a noun of assembly category from the dropdown menus.
+3. Click the "Generate Phrase" button to create a humorous noun of assembly.
+4. Save your favorite phrases for later by clicking the "Save" button.
+
+## Project Collaboration
+
+This project is a collaboration between me, Rhys Smoker and my daughter, Cora.
 
 ## Available Scripts
 
@@ -37,7 +54,16 @@ If you aren't satisfied with the build tool and configuration choices, you can `
 
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However, we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Credits
+
+- [Your Name]: Project development and coding
+- [Your Daughter's Name]: Linguistics research and inspiration
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
 
 ## Learn More
 
