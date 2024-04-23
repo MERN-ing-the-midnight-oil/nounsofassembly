@@ -34,9 +34,22 @@ function App() {
 	}, [selectedNoun, selectedNounOfAssembly]);
 
 	const generatePhrase = () => {
-		const newPhrase = `A ${selectedNounOfAssembly || "NounOfAssembly"} of ${
-			selectedNoun || "Noun"
-		}`;
+		const startingWord = /^[aeiou]/i.test(
+			selectedNounOfAssembly || "NounOfAssembly"
+		)
+			? "An"
+			: "A";
+		let newPhrase = `${startingWord} ${
+			selectedNounOfAssembly || "NounOfAssembly"
+		} of ${selectedNoun || "Noun"}`;
+
+		// Convert any capital letters (excluding the first letter) to lower-case
+		newPhrase =
+			newPhrase.charAt(0).toUpperCase() + newPhrase.slice(1).toLowerCase();
+
+		// Wrap the generated phrase in quotes
+		newPhrase = `"${newPhrase}"`;
+
 		setResult(newPhrase);
 	};
 
@@ -221,7 +234,6 @@ function App() {
 						</select>
 					</div>
 				</div>
-
 				<div className="phrase-container">
 					<p className="phrase-display">
 						<span className="your-phrase">Your Phrase:</span>{" "}
@@ -248,6 +260,10 @@ function App() {
 							</div>
 						</div>
 					)}
+				</div>{" "}
+				<div className="upvote-instructions">
+					note: you can click on any triangle to upvote any phrase and it will
+					move up in the list
 				</div>
 				<ul className="saved-phrases">
 					{savedPhrases.map((phrase, index) => (
@@ -274,9 +290,6 @@ function App() {
 						&darr;
 					</div>
 				</ul>
-				<div className="upvote-instructions">
-					Click on the triangle to vote for your favorite phrases
-				</div>
 			</header>
 		</div>
 	);
