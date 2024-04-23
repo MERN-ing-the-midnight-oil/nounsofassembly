@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import animals from "./animals";
-import collectives from "./collectives";
+import ations from "./ations"; // Import the ations array
+import gatherings from "./gatherings"; // Import the gatherings array
 import professions from "./professions"; // Import the professions array
 
 function App() {
-	const [selectedAnimal, setSelectedAnimal] = useState(animals[0]);
-	const [selectedNoun, setSelectedNoun] = useState(collectives[0]);
-	const [result, setResult] = useState(`A ${collectives[0]} of ${animals[0]}`);
-	const [savedPhrases, setSavedPhrases] = useState([]);
-	const [showProgressBar, setShowProgressBar] = useState(false);
-	const [progress, setProgress] = useState(0);
-	const [upvotingInProgress, setUpvotingInProgress] = useState(false);
-	const [upvotingProgress, setUpvotingProgress] = useState(0);
-	const [activeCategory, setActiveCategory] = useState("animals"); // Track active category
+	const [selectedNoun, setSelectedNoun] = useState(professions[0]); // Set initial value for Noun dropdown
+	const [selectedNounOfAssembly, setSelectedNounOfAssembly] = useState(
+		ations[0]
+	); // Set initial value for Noun of Assembly dropdown
+	const [result, setResult] = useState(""); // State for the generated phrase
+
+	const [savedPhrases, setSavedPhrases] = useState([]); // State for saved phrases
+	const [showProgressBar, setShowProgressBar] = useState(false); // State for progress bar visibility
+	const [progress, setProgress] = useState(0); // State for progress bar
+	const [upvotingInProgress, setUpvotingInProgress] = useState(false); // State for upvoting progress
+	const [upvotingProgress, setUpvotingProgress] = useState(0); // State for upvoting progress
 
 	useEffect(() => {
 		const phrases = JSON.parse(localStorage.getItem("phrases")) || [];
@@ -21,11 +24,17 @@ function App() {
 	}, []);
 
 	useEffect(() => {
-		generatePhrase();
-	}, [selectedAnimal, selectedNoun]);
+		generatePhrase(); // Call generatePhrase after initial values are set
+	}, []);
+
+	useEffect(() => {
+		generatePhrase(); // Call generatePhrase whenever selectedNoun or selectedNounOfAssembly changes
+	}, [selectedNoun, selectedNounOfAssembly]);
 
 	const generatePhrase = () => {
-		const newPhrase = `A ${selectedNoun} of ${selectedAnimal}`;
+		const newPhrase = `A ${selectedNounOfAssembly || "NounOfAssembly"} of ${
+			selectedNoun || "Noun"
+		}`;
 		setResult(newPhrase);
 	};
 
@@ -53,9 +62,16 @@ function App() {
 		}, 5000); // Timeout after 5000 milliseconds (5 seconds)
 	};
 
-	const handleScroll = (offset) => {
-		const savedPhrasesList = document.querySelector(".saved-phrases");
-		savedPhrasesList.scrollTop += offset;
+	const handleNounChange = (noun) => {
+		if (noun !== selectedNoun) {
+			setSelectedNoun(noun);
+		}
+	};
+
+	const handleNounOfAssemblyChange = (noun) => {
+		if (noun !== selectedNounOfAssembly) {
+			setSelectedNounOfAssembly(noun);
+		}
 	};
 
 	const handleUpvote = (index) => {
@@ -85,13 +101,9 @@ function App() {
 		}
 	};
 
-	const handleCategoryChange = (category) => {
-		setActiveCategory(category);
-		if (category === "animals") {
-			setSelectedAnimal(animals[0]);
-		} else if (category === "professions") {
-			setSelectedAnimal(professions[0]);
-		}
+	const handleScroll = (offset) => {
+		const savedPhrasesList = document.querySelector(".saved-phrases");
+		savedPhrasesList.scrollTop += offset;
 	};
 
 	return (
@@ -111,50 +123,70 @@ function App() {
 						<h2>Select a Noun</h2>
 						<div className="category-buttons">
 							<button
-								className={activeCategory === "animals" ? "active" : ""}
-								onClick={() => handleCategoryChange("animals")}>
+								className={selectedNoun === animals[0] ? "active" : ""}
+								onClick={() => handleNounChange(animals[0])}>
 								Animals
 							</button>
 							<button
-								className={activeCategory === "professions" ? "active" : ""}
-								onClick={() => handleCategoryChange("professions")}>
+								className={selectedNoun === professions[0] ? "active" : ""}
+								onClick={() => handleNounChange(professions[0])}>
 								Professions
 							</button>
 						</div>
 						<select
-							value={selectedAnimal}
-							onChange={(e) => setSelectedAnimal(e.target.value)}>
-							{activeCategory === "animals"
-								? animals.map((animal) => (
+							value={selectedNoun}
+							onChange={(e) => handleNounChange(e.target.value)}>
+							{selectedNoun === professions[0]
+								? professions.map((noun) => (
 										<option
-											key={animal}
-											value={animal}>
-											{animal}
+											key={noun}
+											value={noun}>
+											{noun}
 										</option>
 								  ))
-								: activeCategory === "professions"
-								? professions.map((profession) => (
+								: animals.map((noun) => (
 										<option
-											key={profession}
-											value={profession}>
-											{profession}
+											key={noun}
+											value={noun}>
+											{noun}
 										</option>
-								  ))
-								: null}
+								  ))}
 						</select>
 					</div>
 					<div>
 						<h2>Select a Noun of Assembly</h2>
+						<div className="category-buttons">
+							<button
+								className={selectedNounOfAssembly === ations[0] ? "active" : ""}
+								onClick={() => handleNounOfAssemblyChange(ations[0])}>
+								Ations
+							</button>
+							<button
+								className={
+									selectedNounOfAssembly === gatherings[0] ? "active" : ""
+								}
+								onClick={() => handleNounOfAssemblyChange(gatherings[0])}>
+								Gatherings
+							</button>
+						</div>
 						<select
-							value={selectedNoun}
-							onChange={(e) => setSelectedNoun(e.target.value)}>
-							{collectives.map((noun) => (
-								<option
-									key={noun}
-									value={noun}>
-									{noun}
-								</option>
-							))}
+							value={selectedNounOfAssembly}
+							onChange={(e) => handleNounOfAssemblyChange(e.target.value)}>
+							{selectedNounOfAssembly === ations[0]
+								? ations.map((noun) => (
+										<option
+											key={noun}
+											value={noun}>
+											{noun}
+										</option>
+								  ))
+								: gatherings.map((noun) => (
+										<option
+											key={noun}
+											value={noun}>
+											{noun}
+										</option>
+								  ))}
 						</select>
 					</div>
 				</div>
