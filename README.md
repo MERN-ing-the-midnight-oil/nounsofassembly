@@ -58,8 +58,8 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 
 ## Credits
 
-- [Your Name]: Project development and coding
-- [Your Daughter's Name]: Linguistics research and inspiration
+- Rhys Smoker: Project development and coding
+- Cora Smoker: Linguistics research and inspiration
 
 ## License
 
