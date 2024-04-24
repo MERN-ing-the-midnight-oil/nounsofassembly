@@ -126,7 +126,7 @@ function App() {
 			<header className="App-header">
 				<div className="icon-title-container">
 					<img
-						src="birdfish.webp"
+						src="greenfish.webp"
 						className="App-logo"
 						alt="logo"
 						style={{ width: "200px", height: "auto" }}
