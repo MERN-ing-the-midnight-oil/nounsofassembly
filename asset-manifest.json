@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/nounsofassembly/static/css/main.6a1d12fd.css",
-    "main.js": "/nounsofassembly/static/js/main.f234efe5.js",
+    "main.js": "/nounsofassembly/static/js/main.7f37534e.js",
     "index.html": "/nounsofassembly/index.html",
     "main.6a1d12fd.css.map": "/nounsofassembly/static/css/main.6a1d12fd.css.map",
-    "main.f234efe5.js.map": "/nounsofassembly/static/js/main.f234efe5.js.map"
+    "main.7f37534e.js.map": "/nounsofassembly/static/js/main.7f37534e.js.map"
   },
   "entrypoints": [
     "static/css/main.6a1d12fd.css",
-    "static/js/main.f234efe5.js"
+    "static/js/main.7f37534e.js"
   ]
 }
